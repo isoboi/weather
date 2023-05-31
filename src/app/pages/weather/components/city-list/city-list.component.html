@@ -1,0 +1,25 @@
+<div class="container">
+  <div>
+    <div class="searchbar">
+      <input type="text" placeholder="Add city name" [(ngModel)]="inputValue">
+      <button (click)="addNewCity()">ADD</button>
+    </div>
+
+    <div class="city-list">
+      <ng-container *ngIf="cityList.length else emptyCityList">
+        <ng-container *ngFor="let city of cityList; let index = index">
+          <div class="city-name"
+               [ngClass]="{'selected' : selectedCityIndex == index}"
+               (click)="onCitySelect(city.name, index)">
+            {{city.name}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #emptyCityList>
+  Пожалуйста добавьте город
+</ng-template>

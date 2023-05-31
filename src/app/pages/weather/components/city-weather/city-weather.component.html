@@ -1,0 +1,25 @@
+<div class="container">
+  <ng-container *ngIf="(weatherData$ | async) as weather; else cityNotFound">
+    <div class="weather-info">
+      <div class="weather-city">
+        <h2>{{weather.name}} {{weather.main.temp}}&#176;</h2>
+      </div>
+      <div class="weather-main" *ngIf="weather.weather?.length">
+        {{weather.weather[0].main}}
+      </div>
+      <div class="weather-main">
+        {{weather.weather[0].description}}
+      </div>
+      <div class="weather-visibility">
+        <span>Видимость</span> - {{weather.visibility}}
+      </div>
+      <div class="weather-wind">
+        <span>Ветер</span> - {{weather.wind.speed}}
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #cityNotFound>
+  <div>City not found</div>
+</ng-template>
